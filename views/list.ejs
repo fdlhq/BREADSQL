@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SQLITE BREAD</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <script src="/js/util.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="title-text">SQLITE BREAD (Browse, Read, Edit, Add, Delete)</h1>
+      <form action="/" method="get">
+        <div class="input-section">
+          Nama<input
+            type="text"
+            name="name"
+            placeholder="Insert your name"
+            value="<%= query.name %>"
+          />
+        </div>
+        <div class="input-section">
+          Height<input
+            type="number"
+            name="height"
+            placeholder="Insert your height"
+            value="<%= query.height %>"
+          />
+        </div>
+        <div class="input-section">
+          Weight<input
+            type="number"
+            step="0.01"
+            name="weight"
+            placeholder="Insert your weight"
+            value="<%= query.weight %>"
+          />
+        </div>
+        <div class="input-section-birthdate">
+          Birth Date<input
+            type="date" class="input-section-date"
+            name="startdate"
+            value="<%= query.startdate %>"
+          /> s.d 
+          <input type="date" class="input-section-date" name="enddate" value="<%= query.enddate %>" />
+        </div>
+        <div class="input-section">
+          Is Married
+          <% if(query.married=='1' ) { %>
+          <select name="married">
+            <option disabled selected> -Select married- </option>
+            <option value="true">Yes</option>
+            <option value="false">Not Yet</option>
+          </select>
+          <% } else if (query.married=='0' ) { %>
+            <select name="married">
+                <option disabled> -select married- </option><br>
+                <option value="1">Yes</option>
+                <option value="0" selected>Not Yet</option>
+            </select>
+            <% } else { %>
+                <select name="married">
+                    <option disabled selected> -select married- </option><br>
+                    <option value="1">Yes</option>
+                    <option value="0">Not Yet</option>
+                </select>
+                <% } %>
+        </div>
+        <div class="input-section-radio">
+            <div class="text-radio">Operation</div>
+            <div class="input-radio">
+            <% if(query.mode=='OR' ) { %>
+                <input type="radio" id="or" name="mode" value="OR" checked>
+                <label for="or">OR</label>
+                <input type="radio" id="and" name="mode" value="AND">
+                <label for="and">AND</label>
+                <% } else if(query.mode=='AND' ) { %>
+                    <input type="radio" id="or" name="mode" value="OR">
+                    <label for="or">OR</label>
+                    <input type="radio" id="and" name="mode" value="AND" checked>
+                    <label for="and">AND</label>
+                    <% } else { %>
+                        <input type="radio" id="or" name="mode" value="OR" checked>
+                        <label for="or">OR</label>
+                        <input type="radio" id="and" name="mode" value="AND">
+                        <label for="and">AND</label>
+                        <% } %>
+                    </div>
+</div>
+        <div class="btn-search">
+        <button class="btn-save" type="submit">Search</button>
+        <button class="btn-reset"><a href="/">Reset</a></button>
+    </div>
+<br>
+      </form>
+      <table>
+        <thead>
+          <tr>
+            <th>No.</th>
+            <th>Name</th>
+            <th>Height</th>
+            <th>Weight</th>
+            <th>Birth Date</th>
+            <th>Is Married</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% data.forEach((item, index) => { %> <% if (item.married) {%> <%
+          married = "Yes" %>
+          <tr>
+            <td><%= index + offset + 1 %></td>
+            <td><%= item.name %></td>
+            <td><%= item.height %></td>
+            <td><%= item.weight %></td>
+            <td><%= item.birthdate %></td>
+            <td><%= married %></td>
+            <div class="edit-del">
+              <td>
+                <button class="btn-edit">
+                  <a href="/edit/<%= item.id %>">Update</a>
+                </button>
+                &nbsp;
+                <button class="btn-del">
+                  <a
+                    href="/delete/<%= item.id %>"
+                    onclick="return confirmation('<%= item.name %>')"
+                    >Delete</a
+                  >
+                </button>
+              </td>
+            </div>
+          </tr>
+          <% } %> <% if (!item.married) {%> <% married = "Not Yet" %>
+          <tr>
+            <td><%= index + offset + 1 %></td>
+            <td><%= item.name %></td>
+            <td><%= item.height %></td>
+            <td><%= item.weight %></td>
+            <td><%= item.birthdate %></td>
+            <td><%= married %></td>
+            <div class="edit-del">
+              <td>
+                <button class="btn-edit">
+                  <a href="/edit/<%= item.id %>">Update</a>
+                </button>
+                &nbsp;
+                <button class="btn-del">
+                  <a
+                    href="/delete/<%= item.id %>"
+                    onclick="return confirmation('<%= item.name %>')"
+                    >Delete</a
+                  >
+                </button>
+              </td>
+            </div>
+          </tr>
+          <% } %> <% }) %>
+        </tbody>
+      </table>
+      <div class="pagination">
+        <div class="btn-add"><a href="add">Add</a></div>
+    <div class="pages">
+        <% if(page == '1') { %>
+            <a href="<%= url.replace(`page=${page}`, `page=${page}`) %>">&laquo;</a>
+        <% } else { %>
+            <a href="<%= url.replace(`page=${page}`, `page=${page - 1}`) %>">&laquo;</a>
+        <% } %>
+        <% for(let i = 1; i <= pages; i++) { %>
+        <a href="/?page=<%= i %>"><%= i %></a>
+        <% } %>
+        <% if(page == pages) { %>
+            <a href="<%= url.replace(`page=${page}`, `page=${page}`) %>">&raquo;</a>
+        <% } else { %>
+            <a href="<%= url.replace(`page=${page}`, `page=${(page * 1) + 1}`) %>">&raquo;</a>
+        <% } %>
+    </div>
+      </div>
+  </body>
+</html>

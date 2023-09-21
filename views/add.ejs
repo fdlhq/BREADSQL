@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tambah Data</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="title-text">Adding Data</h1>
+      <form action="/add" method="post">
+        <div class="input-section">
+          Nama<input
+            type="text"
+            name="name"
+            placeholder="Insert your name"
+            required
+          />
+        </div>
+        <div class="input-section">
+          Height<input
+            type="number"
+            name="height"
+            placeholder="Insert your height"
+          />
+        </div>
+        <div class="input-section">
+          Weight<input
+            type="number"
+            step="0.01"
+            name="weight"
+            placeholder="Insert your weight"
+          />
+        </div>
+        <div class="input-section">
+          Birth Date<input type="date" name="birthdate" class="date-add" />
+        </div>
+        <div class="input-section">
+          Is Married
+          <select name="married">
+            <option disabled selected>Have you married?</option>
+            <option value="true">Yes</option>
+            <option value="false">Not Yet</option>
+          </select>
+        </div>
+        <div class="footer-add">
+        <button class="btn-save-add" type="submit">Save</button>
+        <button class="btn-reset"><a href="/">Cancel</a></button>
+        </div>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,301 @@
+* {
+    box-sizing: border-box;
+}
+
+.title-text {
+  text-align: center;
+  
+}
+
+body {
+    background-color: azure;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid #a18cd1;
+  }
+  
+  th, td {
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-image: radial-gradient(73% 147%, #EADFDF 59%, #ECE2DF 100%), radial-gradient(91% 146%, rgba(255,255,255,0.50) 47%, rgba(0,0,0,0.50) 100%);
+ background-blend-mode: screen;
+  }
+  
+  tr:nth-child(odd) {
+
+    background-image: linear-gradient(-225deg, #FFFEFF 0%, #D7FFFE 100%);
+}
+
+
+  form {
+    border:#f1f1f1;
+  }
+  
+  /* Full-width inputs */
+  input[type=text], input[type=number]{
+    width: 85%;
+    padding: 8px 15px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 5px;
+  }
+
+  
+  
+  /* Set a style for all buttons */
+
+  .btn {
+    background-image: linear-gradient(to right, #1553d1 0%, #4589ff 100%);
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0 20px;
+    margin-left: unset;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+    position: relative;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 15px;
+    letter-spacing: 1px;
+    font-family: 'Times New Roman', Times, serif
+  }
+
+  .btn-save {
+    background-image: linear-gradient( 135deg, #8ecae6 10%, #8ecae6 100%);
+    color: white;
+    padding: 0px 25px;
+    margin: 10px;
+    margin-left: unset;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+    position: relative;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 15px;
+    letter-spacing: 1px;
+    font-family: 'Times New Roman', Times, serif
+  }
+  
+
+  .btn-reset {
+    background-image: linear-gradient( 135deg, #ffb703 10%, #ffb703 100%);
+    color: white;
+    padding: 13px 25px ;
+    margin: 10px;
+    border: none;
+    cursor: pointer;
+
+    text-decoration: none;
+    position: relative;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 15px;
+    letter-spacing: 1px;
+    font-family: 'Times New Roman', Times, serif
+  }
+
+  .btn-search{
+    display: flex;
+    justify-content: start;
+    margin-bottom: 10px
+  }
+
+  select {
+    width: 85%;
+    padding: 8px 15px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+  
+  /* Add a hover effect for buttons */
+  button:hover {
+    opacity: 0.8;
+  }
+
+  .btn:hover {
+    opacity: 0.8;
+  }
+
+  .container {
+    margin: 10px;
+    padding: 0;
+  }
+
+  .edit-del {
+    color: black;
+  }
+
+  .btn-edit {
+    background-image: linear-gradient(to top, #0ba360 0%, #3cba92 100%);
+    color: white;
+    padding: 10px 30px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    position: relative;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 15px;
+    letter-spacing: 1px;
+    font-family: 'Times New Roman', Times, serif
+  }
+
+  .btn-del {
+    background-image: radial-gradient( circle farthest-corner at 17.1% 22.8%,  rgba(226,24,24,1) 0%, rgba(160,6,6,1) 90% );
+    color: white;
+    padding: 10px 30px;
+    margin: 5px 5px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    position: relative;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 15px;
+    letter-spacing: 1px;
+    font-family: 'Times New Roman', Times, serif
+  }
+
+  a {
+    color: white;
+    text-decoration: none;
+  }
+
+  .input-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .input-section-birthdate {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .input-section-date {
+    padding: 8px 15px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 5px;
+    width: 32%;
+  }
+
+
+
+  .pagination {
+    display: flex;
+    justify-content: space-between;
+    color: blue;
+    margin-top: 10px;
+  }
+  
+  .pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+  }
+  
+  .pagination a.active {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  .pagination a:hover:not(.active) {background-color: #1553d1;}
+
+  .input-radio{
+    width: 25%;
+    padding: 8px 15px;
+    margin: 8px 0;
+    display: inline-block;
+
+    box-sizing: border-box;
+  }
+
+  .input-section-radio {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+  }
+  
+  .text-radio {
+    margin-right: 130px;
+  }
+
+  .btn-add {
+    background-image: linear-gradient(to right, #1553d1 0%, #4589ff 100%);
+    color: white;
+    border: none;
+    padding: 6px 13px;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 15px;
+    letter-spacing: 1px;
+    font-family: 'Times New Roman', Times, serif
+  }
+
+  .pages {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+  }
+
+  .radio-button label {
+    width: 30px; 
+    margin-left: 0px;
+  }
+
+  .date-add {
+    width: 85%;
+    padding: 8px 15px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 5px;
+  }
+
+  .btn-save-add {
+    background-image: linear-gradient(to right, #1553d1 0%, #4589ff 100%);
+    color: white;
+    border: none;
+    padding:  12px 31px;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 15px;
+    letter-spacing: 1px;
+    font-family: 'Times New Roman', Times, serif
+  }
+
+  .radio-edit {
+    display: flex;
+    justify-content: start;
+
+  }
+
+
+  .legend-radio {
+    width: 15%;
+  }
