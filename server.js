@@ -2,7 +2,6 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const sqlite3 = require("sqlite3").verbose();
 const path = require("path");
-const { error } = require("console");
 
 const db = new sqlite3.Database(path.join(__dirname, "db", "data.db"));
 
@@ -17,49 +16,73 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.get("/", (req, res) => {
-  const { page = 1, name, height, weight, startdate, enddate } = req.query;
+  const {
+    page = 1,
+    name,
+    height,
+    weight,
+    startdate,
+    enddate,
+    married,
+    mode,
+  } = req.query;
 
   const limit = 5;
   const offset = (page - 1) * 5;
 
   const queries = [];
   const params = [];
+  const paramscount = [];
 
   if (name) {
     queries.push(`name like '%' || ? || '%'`);
     params.push(name);
+    paramscount.push(name);
   }
 
   if (height) {
     queries.push(`height =?`);
     params.push(height);
+    paramscount.push(height);
   }
 
   if (weight) {
     queries.push(`weight =?`);
     params.push(weight);
+    paramscount.push(weight);
+  }
+
+  if (married) {
+    queries.push("married = ?");
+    params.push(married);
+    paramscount.push(married);
   }
 
   if (startdate && enddate) {
     queries.push(`birthdate between ? and ?`);
     params.push(startdate, enddate);
+    paramscount.push(startdate, enddate);
   } else if (startdate) {
     queries.push("birthdate >= ?");
     params.push(startdate);
+    paramscount.push(startdate);
   } else if (enddate) {
     queries.push("birthdate <= ?");
     params.push(enddate);
+    paramscount.push(enddate);
   }
 
   let sql = "SELECT * FROM data";
+  let sqlcount = "SELECT COUNT(*) AS total FROM data";
   if (queries.length > 0) {
-    sql += ` WHERE ${queries.join(" or ")}`;
+    sql += ` WHERE ${queries.join(` ${mode} `)}`;
+    sqlcount += ` WHERE ${queries.join(` ${mode} `)}`;
   }
 
   sql += ` limit ? offset ?`;
   params.push(limit, offset);
 
-  db.get(`SELECT COUNT(*) AS total FROM data`, (err, data) => {
+  db.get(sqlcount, paramscount, (err, data) => {
     const total = data.total;
     const pages = Math.ceil(total / limit);
 

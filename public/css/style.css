@@ -8,13 +8,13 @@
 }
 
 body {
-    background-color: azure;
+    background-color: white;
 }
 
 table {
     border-collapse: collapse;
     width: 100%;
-    border: 1px solid #a18cd1;
+    border: 1px solid #c3c2c4;
   }
   
   th, td {
@@ -23,18 +23,18 @@ table {
   }
   
   tr:nth-child(even) {
-    background-image: radial-gradient(73% 147%, #EADFDF 59%, #ECE2DF 100%), radial-gradient(91% 146%, rgba(255,255,255,0.50) 47%, rgba(0,0,0,0.50) 100%);
- background-blend-mode: screen;
+    background-color: white;
   }
   
   tr:nth-child(odd) {
 
-    background-image: linear-gradient(-225deg, #FFFEFF 0%, #D7FFFE 100%);
+    background-color: #f2f2f2;
 }
 
 
   form {
     border:#f1f1f1;
+    border-top: 2px solid #e0dada;
   }
   
   /* Full-width inputs */
@@ -53,7 +53,7 @@ table {
   /* Set a style for all buttons */
 
   .btn {
-    background-image: linear-gradient(to right, #1553d1 0%, #4589ff 100%);
+    background-image: linear-gradient(to right, #1553d1 0%, #1553d1 100%);
     color: white;
     padding: 14px 20px;
     margin: 8px 0 20px;
@@ -71,7 +71,7 @@ table {
   }
 
   .btn-save {
-    background-image: linear-gradient( 135deg, #8ecae6 10%, #8ecae6 100%);
+    background-image: linear-gradient( 135deg, #00cfff 10%, #00cfff 100%);
     color: white;
     padding: 0px 25px;
     margin: 10px;
@@ -90,9 +90,9 @@ table {
   
 
   .btn-reset {
-    background-image: linear-gradient( 135deg, #ffb703 10%, #ffb703 100%);
+    background-image: linear-gradient( 135deg, #feb600 10%, #ffb600 100%);
     color: white;
-    padding: 13px 25px ;
+    padding: 10px 30px;
     margin: 10px;
     border: none;
     cursor: pointer;
@@ -109,7 +109,6 @@ table {
   .btn-search{
     display: flex;
     justify-content: start;
-    margin-bottom: 10px
   }
 
   select {
@@ -131,8 +130,7 @@ table {
   }
 
   .container {
-    margin: 10px;
-    padding: 0;
+
   }
 
   .edit-del {
@@ -205,22 +203,21 @@ table {
     display: flex;
     justify-content: space-between;
     color: blue;
-    margin-top: 10px;
   }
   
-  .pagination a {
+  .pages a {
     color: black;
     float: left;
     padding: 8px 16px;
     text-decoration: none;
   }
   
-  .pagination a.active {
+  .pages a.active {
     background-color: #4CAF50;
     color: white;
   }
   
-  .pagination a:hover:not(.active) {background-color: #1553d1;}
+  .pages a:hover:not(.active) {background-color: #1553d1;}
 
   .input-radio{
     width: 25%;
@@ -245,20 +242,22 @@ table {
     background-image: linear-gradient(to right, #1553d1 0%, #4589ff 100%);
     color: white;
     border: none;
-    padding: 6px 13px;
+    padding: 9px 20px 9px 23px;
     cursor: pointer;
     text-decoration: none;
     text-align: center;
     border-radius: 5px;
     font-size: 15px;
     letter-spacing: 1px;
-    font-family: 'Times New Roman', Times, serif
+    font-family: 'Times New Roman', Times, serif;
+    width: 7%;
   }
 
   .pages {
     border: 1px solid #ccc;
     border-radius: 10px;
   }
+  
 
   .radio-button label {
     width: 30px; 
@@ -298,4 +297,145 @@ table {
 
   .legend-radio {
     width: 15%;
+  }
+
+  .link-add {
+    color: white;
+  }
+
+  .header-ttl {
+    background-color: #f2f2f2;
+  }
+
+  #notif {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 2;
+    cursor: pointer;
+  }
+
+  .modal-dialog {
+    position: relative;
+    width: 30%;
+    margin: 1% auto 20% auto;
+    pointer-events: none;
+  }
+
+  .modal-content {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 100%;
+    pointer-events: auto;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 0.3rem;
+    outline: 0;
+  }
+
+  .modal-header {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 1rem;
+    border-bottom: 1px solid #e9ecef;
+    border-top-left-radius: 0.3rem;
+    border-top-right-radius: 0.3rem;
+  }
+
+  .modal-title {
+    margin-bottom: 0;
+    margin-top: 0px;
+    line-height: 1.5;
+  }
+
+  .close {
+    float: right;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    opacity: .5;
+    margin: 0px;
+    font-size: 30px;
+  }
+
+  .modal-body {
+    position: relative;
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 8px 14px;
+    padding-bottom: 20px;
+  }
+
+  .modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    border-top: 1px solid #e9ecef;
+  }
+
+  .off-click {
+    background-color: #5e646f;
+    color: white;
+    padding: 10px 12px;
+    border: none;
+    cursor: pointer;
+    width: 20%;
+    border-radius: 7px;
+    margin: 8px;
+    margin-left: 3px;
+    margin-right: 5px;
+  }
+
+  .nextdel {
+    background-color: rgb(249, 181, 55);
+    color: black;
+    padding: 10.8px 30px;
+    padding-top: 8px;
+    margin-top: 10.5px;
+    margin-right: 10px;
+    margin-bottom: 9px;
+    border: none; 
+    cursor: pointer;
+    width: 19%;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 7px;
+    font-size: 15px;
+  }
+
+  .footer-list {
+    background-color: #f2f2f2;
+    padding: 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+
+  .footer-add {
+    background-color: #f2f2f2;
+    padding: 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
   }

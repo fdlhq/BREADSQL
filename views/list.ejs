@@ -9,8 +9,10 @@
   </head>
   <body>
     <div class="container">
-      <h1 class="title-text">SQLITE BREAD (Browse, Read, Edit, Add, Delete)</h1>
+      <div class="header-ttl"><h1 class="title-text" style="padding: 20px;
+        margin: auto;">SQLITE BREAD (Browse, Read, Edit, Add, Delete) and Pagination</h1></div>
       <form action="/" method="get">
+        <input type="hidden" name="page" value="1">
         <div class="input-section">
           Nama<input
             type="text"
@@ -121,12 +123,7 @@
                   <a href="/edit/<%= item.id %>">Update</a>
                 </button>
                 &nbsp;
-                <button class="btn-del">
-                  <a
-                    href="/delete/<%= item.id %>"
-                    onclick="return confirmation('<%= item.name %>')"
-                    >Delete</a
-                  >
+                <button class="btn-del" onclick="on('<%= item.id %>', '<%= item.name %>')">Delete
                 </button>
               </td>
             </div>
@@ -145,12 +142,7 @@
                   <a href="/edit/<%= item.id %>">Update</a>
                 </button>
                 &nbsp;
-                <button class="btn-del">
-                  <a
-                    href="/delete/<%= item.id %>"
-                    onclick="return confirmation('<%= item.name %>')"
-                    >Delete</a
-                  >
+                <button class="btn-del" onclick="on('<%= item.id %>', '<%= item.name %>')">Delete
                 </button>
               </td>
             </div>
@@ -158,23 +150,55 @@
           <% } %> <% }) %>
         </tbody>
       </table>
+      <div class="footer-list">
       <div class="pagination">
-        <div class="btn-add"><a href="add">Add</a></div>
+        <div class="btn-add"><a href="add" class="link-add">Add</a></div>
     <div class="pages">
-        <% if(page == '1') { %>
-            <a href="<%= url.replace(`page=${page}`, `page=${page}`) %>">&laquo;</a>
+      <% if(page == '1') { %>
+        <a href="<%= url.replace(`page=${page}`, `page=${page}`) %>">&laquo;</a>
+    <% } else { %>
+        <a href="<%= url.replace(`page=${page}`, `page=${page - 1}`) %>">&laquo;</a>
+    <% } %>
+    <% for(let i =1; i <= pages; i++) { %>
+        <% if(url.includes("page=")) { %>
+            <% if (i == page) { %>
+                <a href="<%= url.replace(`page=${page}`, `page=${i}`) %>" class="active"><%= i %></a>
+            <% } else { %>
+                <a href="<%= url.replace(`page=${page}`, `page=${i}`) %>"><%= i %></a>
+            <% } %>
         <% } else { %>
-            <a href="<%= url.replace(`page=${page}`, `page=${page - 1}`) %>">&laquo;</a>
+            <% if (i == page) { %>
+                <a href="/?page=<%= i %>"><%= i %></a>
+            <% } else { %>
+                <a href="/?page=<%= i %>"><%= i %></a>
+            <% } %>
         <% } %>
-        <% for(let i = 1; i <= pages; i++) { %>
-        <a href="/?page=<%= i %>"><%= i %></a>
-        <% } %>
-        <% if(page == pages) { %>
-            <a href="<%= url.replace(`page=${page}`, `page=${page}`) %>">&raquo;</a>
-        <% } else { %>
-            <a href="<%= url.replace(`page=${page}`, `page=${(page * 1) + 1}`) %>">&raquo;</a>
-        <% } %>
+    <% } %>
+    <% if(page == pages) { %>
+        <a href="<%= url.replace(`page=${page}`, `page=${page}`) %>">&raquo;</a>
+    <% } else { %>
+        <a href="<%= url.replace(`page=${page}`, `page=${(page * 1) + 1}`) %>">&raquo;</a>
+    <% } %>
     </div>
       </div>
+      <div class="notif" id="notif">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Delete Confirmation</h4>
+                    <p class="close" onclick="off()">&times;</p>
+                </div>
+                <div class="modal-body">
+                    <p id="ask"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="off-click" onclick="off()">No</button>
+                    <a id="nextdelete" class="nextdel" href="#">Yes</a>
+                </div>
+     
+            </div>
+        </div>
+    </div>
+  </div>
   </body>
 </html>

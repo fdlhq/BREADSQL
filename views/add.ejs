@@ -8,7 +8,8 @@
   </head>
   <body>
     <div class="container">
-      <h1 class="title-text">Adding Data</h1>
+      <div class="header-ttl"><h1 class="title-text" style="padding: 20px;
+        margin: auto;">Adding Data</h1></div>
       <form action="/add" method="post">
         <div class="input-section">
           Nama<input
@@ -36,13 +37,14 @@
         <div class="input-section">
           Birth Date<input type="date" name="birthdate" class="date-add" />
         </div>
-        <div class="input-section">
-          Is Married
-          <select name="married">
-            <option disabled selected>Have you married?</option>
-            <option value="true">Yes</option>
-            <option value="false">Not Yet</option>
-          </select>
+        <div class="radio-edit">
+          <div class="legend-radio"><legend>Is Married</legend></div>
+          <div class="radio-input-edit">
+            <input type="radio" id="false" name="married" value="0" />
+            <label for="false">Not Yet</label><br />
+            <input type="radio" id="true" name="married" value="1" />
+            <label for="true">Yes</label>
+          </div>
         </div>
         <div class="footer-add">
         <button class="btn-save-add" type="submit">Save</button>
